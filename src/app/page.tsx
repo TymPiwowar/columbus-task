@@ -1,10 +1,17 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+import { getProducts } from '@/services/productService'
 
-export default function Home() {
+async function Home() {
+	const data = await getProducts()
+
 	return (
-		<div className={styles.page}>
-			<p>Quick test</p>
-		</div>
+		<main>
+			<h1>Product Listing Page</h1>
+			{data.products.map(prod => (
+				<div key={prod.articleNumber}>
+					<p>{prod.title}</p>
+				</div>
+			))}
+		</main>
 	)
 }
+export default Home
