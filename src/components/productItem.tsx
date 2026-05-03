@@ -18,7 +18,7 @@ const ProductItem = ({ product }: ProductItemProps) => {
 	return (
 		<div className='itemContainer'>
 			{product.image?.link && (
-				<Image src={product.image.link} alt={product.image.altText || product.title} width={200} height={200} />
+				<Image src={product.image.link} alt={product.image.altText || product.title} className='image' />
 			)}
 			{hasPromotion && (
 				<div className='saleSign'>
