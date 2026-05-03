@@ -1,7 +1,10 @@
+'use client'
+
+import { ShoppingCart, Search } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
 import './navbar.css'
-
+import { useCart } from '@/context/CartContext'
 interface NavbarProps {
 	logoData?: {
 		link: string
@@ -11,6 +14,8 @@ interface NavbarProps {
 }
 
 const Navbar = ({ logoData }: NavbarProps) => {
+	const { cartCount } = useCart()
+
 	return (
 		<header className='navbarHeader'>
 			<nav className='navbarContainer'>
@@ -20,15 +25,19 @@ const Navbar = ({ logoData }: NavbarProps) => {
 				</Link>
 				<div className='navbarSearch'>
 					<div className='searchInputWrapper'>
-						<span className='searchIcon'>Lens icon here</span>
+						<span className='searchIcon'>
+							<Search />
+						</span>
 						<input type='text' placeholder='Szukaj...' />
 					</div>
 				</div>
-				<div className='navbarActions'>
-					<Link href='/cart' className='cartLink'>
-						<span className='cartIcon'>cart icon here</span>
+				<div>
+					<Link href='/' className='cartLink'>
+						<span className='cartIcon'>
+							<ShoppingCart />
+						</span>
 
-						<span className='cartBadge'>0</span>
+						<span className='cartBadge'>{cartCount}</span>
 					</Link>
 				</div>
 			</nav>

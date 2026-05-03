@@ -3,7 +3,7 @@
 import { Product } from '@/types/product'
 import Image from 'next/image'
 import './productItem.css'
-
+import { useCart } from '@/context/CartContext'
 interface ProductItemProps {
 	product: Product
 }
@@ -14,6 +14,8 @@ const ProductItem = ({ product }: ProductItemProps) => {
 		hasPromotion && product.promotion
 			? (product.price * (1 - product.promotion.percentage / 100)).toFixed(2)
 			: product.price
+
+	const { addToCart } = useCart()
 
 	return (
 		<div className='itemContainer'>
@@ -39,7 +41,7 @@ const ProductItem = ({ product }: ProductItemProps) => {
 						<span>{product.price} zł</span>
 					)}
 				</div>
-				<button className='buttonAddToCart' onClick={() => console.log('Fake request: update cart')}>
+				<button className='buttonAddToCart' onClick={addToCart}>
 					Do koszyka
 				</button>
 			</div>
