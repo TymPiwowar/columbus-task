@@ -1,10 +1,21 @@
 import { getProducts } from '@/services/productService'
 import ProductItem from './productItem'
 import './productList.css'
-const ProductList = async () => {
+interface ProductListProps {
+	search?: string
+}
+
+const ProductList = async ({ search }: ProductListProps) => {
 	const data = await getProducts()
 
 	const countAll = data.products.length
+	const filteredProducts = data.products.filter(prod => {
+		if (!search) return true
+		return (
+			prod.title.toLowerCase().includes(search.toLowerCase()) ||
+			prod.brandName.toLowerCase().includes(search.toLowerCase())
+		)
+	})
 
 	return (
 		<section>
@@ -13,9 +24,11 @@ const ProductList = async () => {
 			</h2>
 
 			<div className='itemsContainer'>
-				{data.products.map(prod => (
-					<ProductItem key={prod.articleNumber} product={prod} />
-				))}
+				{filteredProducts.length > 0 ? (
+					filteredProducts.map(prod => <ProductItem key={prod.articleNumber} product={prod} />)
+				) : (
+					<p>Nie znaleziono przedmiotów</p>
+				)}
 			</div>
 		</section>
 	)
