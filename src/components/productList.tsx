@@ -18,14 +18,14 @@ const ProductList = async ({ search, promo }: ProductListProps) => {
 	return (
 		<section>
 			<h2>
-				Sprzęt sportowy <span className='counter'>{filteredProducts.length} produktów</span>
+				Sports equipment <span className='counter'>{filteredProducts.length} products</span>
 			</h2>
 
 			<div className='itemsContainer'>
 				{filteredProducts.length > 0 ? (
 					filteredProducts.map(prod => <ProductItem key={prod.articleNumber} product={prod} />)
 				) : (
-					<p>Nie znaleziono przedmiotów</p>
+					<p>Items not found</p>
 				)}
 			</div>
 		</section>

@@ -49,14 +49,14 @@ const Navbar = ({ logoData }: NavbarProps) => {
 						<span className='searchIcon'>
 							<Search />
 						</span>
-						<input type='text' value={input} placeholder='Szukaj...' onChange={e => setInput(e.target.value)} />
+						<input type='text' value={input} placeholder='Search...' onChange={e => setInput(e.target.value)} />
 					</div>
 					<button
 						className={`promoFilter ${onlyPromo ? 'active' : ''}`}
 						onClick={() => setOnlyPromo(!onlyPromo)}
 						type='button'>
 						<Percent size={16} />
-						<span>Promocje</span>
+						<span>Sales</span>
 					</button>
 				</div>
 

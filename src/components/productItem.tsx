@@ -40,7 +40,7 @@ const ProductItem = ({ product }: ProductItemProps) => {
 					</div>
 				)}
 
-				{hasPromotion && <span className='saleSign'>Promocja!</span>}
+				{hasPromotion && <span className='saleSign'>Special offer!</span>}
 				<button className={`wishlistBtn ${favItem ? 'active' : ''}`} onClick={() => setFavItem(prev => !prev)}>
 					<Heart size={16} className='heartIcon' />
 				</button>
@@ -53,19 +53,19 @@ const ProductItem = ({ product }: ProductItemProps) => {
 					<div className='priceContainer'>
 						{hasPromotion ? (
 							<>
-								<span className='newPrice'>{finalPrice} zł</span>
-								<span className='oldPrice'>{product.price} zł</span>
-								<span className='saveInfo'>Oszczędzasz {product.promotion?.percentage}%!</span>
+								<span className='newPrice'>{finalPrice} $</span>
+								<span className='oldPrice'>{product.price} $</span>
+								<span className='saveInfo'>You save: {product.promotion?.percentage}%!</span>
 							</>
 						) : (
-							<span className='newPrice'>{product.price} zł</span>
+							<span className='newPrice'>{product.price} $</span>
 						)}
 					</div>
 				</div>
 
 				<div className='buttonContainer'>
 					<button className={`buttonAddToCart ${isClicked ? 'active' : ''}`} onClick={handleAddToCart}>
-						Do koszyka
+						Add to cart
 					</button>
 				</div>
 			</div>
