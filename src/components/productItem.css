@@ -116,6 +116,16 @@
 	font-size: 1.3rem;
 }
 
+.saveInfo {
+	text-transform: uppercase;
+	font-size: 0.75rem;
+	font-weight: bold;
+	background-color: #cc0000;
+	color: #fff;
+	border-radius: 12px;
+	padding: 0.5rem;
+}
+
 .buttonAddToCart {
 	min-width: 130px;
 	background-color: #1a3a6e;

@@ -55,6 +55,7 @@ const ProductItem = ({ product }: ProductItemProps) => {
 							<>
 								<span className='newPrice'>{finalPrice} zł</span>
 								<span className='oldPrice'>{product.price} zł</span>
+								<span className='saveInfo'>Oszczędzasz {product.promotion?.percentage}%!</span>
 							</>
 						) : (
 							<span className='newPrice'>{product.price} zł</span>
