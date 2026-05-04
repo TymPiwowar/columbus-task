@@ -20,6 +20,15 @@ const ProductItem = ({ product }: ProductItemProps) => {
 	const { addToCart } = useCart()
 	const [favItem, setFavItem] = useState(false)
 
+	const [isClicked, setIsClicked] = useState(false)
+
+	const handleAddToCart = () => {
+		addToCart()
+		setIsClicked(true)
+
+		setTimeout(() => setIsClicked(false), 200)
+	}
+
 	return (
 		<div className='itemContainer'>
 			<div className='imageSection'>
@@ -37,22 +46,27 @@ const ProductItem = ({ product }: ProductItemProps) => {
 				</button>
 			</div>
 			<div className='contentWrapper'>
-				<p className='brandName'>{product.brandName}</p>
-				<h3>{product.title}</h3>
+				<div className='leftSideContainer'>
+					<p className='brandName'>{product.brandName}</p>
+					<h3>{product.title}</h3>
 
-				<div>
-					{hasPromotion ? (
-						<>
-							<span className='newPrice'>{finalPrice} zł</span>
-							<span className='oldPrice'>{product.price} zł</span>
-						</>
-					) : (
-						<span>{product.price} zł</span>
-					)}
+					<div className='priceContainer'>
+						{hasPromotion ? (
+							<>
+								<span className='newPrice'>{finalPrice} zł</span>
+								<span className='oldPrice'>{product.price} zł</span>
+							</>
+						) : (
+							<span className='newPrice'>{product.price} zł</span>
+						)}
+					</div>
 				</div>
-				<button className='buttonAddToCart' onClick={addToCart}>
-					Do koszyka
-				</button>
+
+				<div className='buttonContainer'>
+					<button className={`buttonAddToCart ${isClicked ? 'active' : ''}`} onClick={handleAddToCart}>
+						Do koszyka
+					</button>
+				</div>
 			</div>
 		</div>
 	)

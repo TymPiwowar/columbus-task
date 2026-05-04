@@ -76,12 +76,34 @@
 
 .contentWrapper {
 	padding: 1.5rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+}
+
+.leftSideContainer {
+	display: flex;
+	flex-direction: column;
+}
+
+.buttonContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.priceContainer {
+	display: flex;
+	align-items: baseline;
+	gap: 10px;
+	margin-top: 8px;
 }
 
 .brandName {
 	color: #808080;
 	text-transform: uppercase;
 	font-size: 0.8rem;
+	margin-bottom: 0.3rem;
 }
 .oldPrice {
 	text-decoration: line-through;
@@ -95,16 +117,26 @@
 }
 
 .buttonAddToCart {
+	min-width: 130px;
 	background-color: #1a3a6e;
+	font-size: 1rem;
 	color: #fff;
 	padding: 0.7rem;
 	border-radius: 12px;
+	transition: all 0.2s ease-in-out;
+	border: none;
 }
 
 .buttonAddToCart:hover {
 	background-color: #2451a3;
 	cursor: pointer;
 }
+
+.buttonAddToCart.active {
+	background-color: #0d2142;
+	transform: scale(0.98);
+}
+
 .itemContainer:hover {
-	transform: translateY(-5px);
+	transform: translateY(-3px);
 }
