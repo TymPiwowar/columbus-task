@@ -7,14 +7,56 @@
 	background-color: #f2f2f2;
 }
 
-.contentWrapper {
-	padding: 1.5rem;
+.imageSection {
+	position: relative;
+	width: 100%;
+	aspect-ratio: 16 / 9;
+	background-color: #3b5988;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
-.image {
-	width: 200px;
-	height: 200px;
-	background-color: #2451a3;
+.placeholder {
+	color: rgba(255, 255, 255, 0.3);
+}
+
+.wishlistBtn {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	background: white;
+	border: none;
+	border-radius: 50%;
+	width: 30px;
+	height: 30px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	color: #cc0000;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	transition: all 0.2s ease;
+}
+
+.heartIcon {
+	color: #cc0000;
+	transition: fill 0.2s ease;
+}
+
+.wishlistBtn.active {
+	background-color: #cc0000;
+	border-color: #cc0000;
+}
+
+.wishlistBtn.active .heartIcon {
+	color: white;
+	fill: white;
+}
+
+.wishlistBtn:hover {
+	transform: scale(1.1);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .saleSign {
@@ -29,16 +71,27 @@
 	color: #fff;
 	border-radius: 12px;
 	padding: 0.5rem;
+	z-index: 10;
 }
 
+.contentWrapper {
+	padding: 1.5rem;
+}
+
+.brandName {
+	color: #808080;
+	text-transform: uppercase;
+	font-size: 0.8rem;
+}
 .oldPrice {
 	text-decoration: line-through;
 	color: #808080;
+	font-size: 1rem;
 }
 
 .newPrice {
 	font-weight: bold;
-	font-size: large;
+	font-size: 1.3rem;
 }
 
 .buttonAddToCart {

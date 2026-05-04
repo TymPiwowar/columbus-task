@@ -7,7 +7,6 @@ async function Home({ searchParams }: { searchParams: { search?: string; promo?:
 
 	return (
 		<main>
-			<h1>Product Listing Page</h1>
 			<ProductList search={searchTerm} promo={isPromoOnly} />
 		</main>
 	)

@@ -4,6 +4,8 @@ import { Product } from '@/types/product'
 import Image from 'next/image'
 import './productItem.css'
 import { useCart } from '@/context/CartContext'
+import { Camera, Heart } from 'lucide-react'
+import { useState } from 'react'
 interface ProductItemProps {
 	product: Product
 }
@@ -16,20 +18,27 @@ const ProductItem = ({ product }: ProductItemProps) => {
 			: product.price
 
 	const { addToCart } = useCart()
+	const [favItem, setFavItem] = useState(false)
 
 	return (
 		<div className='itemContainer'>
-			{product.image?.link && (
-				<Image src={product.image.link} alt={product.image.altText || product.title} className='image' />
-			)}
-			{hasPromotion && (
-				<div className='saleSign'>
-					<p>sale!</p>
-				</div>
-			)}
+			<div className='imageSection'>
+				{product.image?.link ? (
+					<Image src={product.image.link} alt={product.image.altText || product.title} fill className='productImg' />
+				) : (
+					<div className='placeholder'>
+						<Camera size={48} color='rgba(255,255,255,0.3)' strokeWidth={1.5} />
+					</div>
+				)}
+
+				{hasPromotion && <span className='saleSign'>Promocja!</span>}
+				<button className={`wishlistBtn ${favItem ? 'active' : ''}`} onClick={() => setFavItem(prev => !prev)}>
+					<Heart size={16} className='heartIcon' />
+				</button>
+			</div>
 			<div className='contentWrapper'>
+				<p className='brandName'>{product.brandName}</p>
 				<h3>{product.title}</h3>
-				<p>Brand: {product.brandName}</p>
 
 				<div>
 					{hasPromotion ? (
