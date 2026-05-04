@@ -1,13 +1,14 @@
 import ProductList from '@/components/productList'
 
-async function Home({ searchParams }: { searchParams: { search?: string } }) {
-	const resolvedSearchParams = await searchParams
-	const searchTerm = resolvedSearchParams.search
+async function Home({ searchParams }: { searchParams: { search?: string; promo?: string } }) {
+	const resolvedParams = await searchParams
+	const searchTerm = resolvedParams.search
+	const isPromoOnly = resolvedParams.promo === 'true'
 
 	return (
 		<main>
 			<h1>Product Listing Page</h1>
-			<ProductList search={searchTerm} />
+			<ProductList search={searchTerm} promo={isPromoOnly} />
 		</main>
 	)
 }

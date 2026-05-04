@@ -1,6 +1,6 @@
 'use client'
 
-import { ShoppingCart, Search } from 'lucide-react'
+import { ShoppingCart, Search, Percent } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
 import './navbar.css'
@@ -21,14 +21,21 @@ const Navbar = ({ logoData }: NavbarProps) => {
 	const router = useRouter()
 	const searchParams = useSearchParams()
 	const [input, setInput] = useState(searchParams?.get('search') || '')
+	const [onlyPromo, setOnlyPromo] = useState(searchParams?.get('promo') === 'true')
 
 	useEffect(() => {
 		const timer = setTimeout(() => {
-			router.push(input ? `/?search=${input}` : '/')
-		}, 200)
+			const params = new URLSearchParams()
+
+			if (input) params.set('search', input)
+			if (onlyPromo) params.set('promo', 'true')
+
+			const queryString = params.toString()
+			router.push(queryString ? `/?${queryString}` : '/')
+		}, 100)
 
 		return () => clearTimeout(timer)
-	}, [input, router])
+	}, [input, onlyPromo, router])
 
 	return (
 		<header className='navbarHeader'>
@@ -44,7 +51,15 @@ const Navbar = ({ logoData }: NavbarProps) => {
 						</span>
 						<input type='text' value={input} placeholder='Szukaj...' onChange={e => setInput(e.target.value)} />
 					</div>
+					<button
+						className={`promoFilter ${onlyPromo ? 'active' : ''}`}
+						onClick={() => setOnlyPromo(!onlyPromo)}
+						type='button'>
+						<Percent size={16} />
+						<span>Promocje</span>
+					</button>
 				</div>
+
 				<div>
 					<Link href='/' className='cartLink'>
 						<span className='cartIcon'>

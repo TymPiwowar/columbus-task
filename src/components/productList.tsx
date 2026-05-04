@@ -3,24 +3,22 @@ import ProductItem from './productItem'
 import './productList.css'
 interface ProductListProps {
 	search?: string
+	promo?: boolean
 }
 
-const ProductList = async ({ search }: ProductListProps) => {
+const ProductList = async ({ search, promo }: ProductListProps) => {
 	const data = await getProducts()
+	const filteredProducts = data.products.filter(p => {
+		const matchesSearch = !search || p.title.toLowerCase().includes(search.toLowerCase())
+		const matchesPromo = !promo || (p.promotion && p.promotion.percentage > 0)
 
-	const countAll = data.products.length
-	const filteredProducts = data.products.filter(prod => {
-		if (!search) return true
-		return (
-			prod.title.toLowerCase().includes(search.toLowerCase()) ||
-			prod.brandName.toLowerCase().includes(search.toLowerCase())
-		)
+		return matchesSearch && matchesPromo
 	})
 
 	return (
 		<section>
 			<h2>
-				Sprzęt sportowy <span className='counter'>{countAll} produktów</span>
+				Sprzęt sportowy <span className='counter'>{filteredProducts.length} produktów</span>
 			</h2>
 
 			<div className='itemsContainer'>
