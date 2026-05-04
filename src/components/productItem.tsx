@@ -49,6 +49,7 @@ const ProductItem = ({ product }: ProductItemProps) => {
 				<div className='leftSideContainer'>
 					<p className='brandName'>{product.brandName}</p>
 					<h3>{product.title}</h3>
+					{product.description && <p className='description'>{product.description}</p>}
 
 					<div className='priceContainer'>
 						{hasPromotion ? (

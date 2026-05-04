@@ -105,6 +105,13 @@
 	font-size: 0.8rem;
 	margin-bottom: 0.3rem;
 }
+
+.description {
+	font-size: 0.85rem;
+	color: #555;
+	margin-top: 0.4rem;
+	line-height: 1.4;
+}
 .oldPrice {
 	text-decoration: line-through;
 	color: #808080;
